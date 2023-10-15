@@ -1,13 +1,13 @@
 import React from "react";
 
-const Create = ({ onCreate }) => {
+const Create = ({ onBtnClick, BTNtitle, className }) => {
   return (
     <div>
       <div
-        onClick={onCreate}
-        className='bg-green-700 rounded-md px-5 py-2 text-white cursor-pointer'
+        onClick={onBtnClick}
+        className={`bg-green-700 rounded-md px-5 py-2 text-white cursor-pointer ${className}`}
       >
-        Create
+        {BTNtitle}
       </div>
     </div>
   );
