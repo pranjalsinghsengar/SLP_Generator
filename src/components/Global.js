@@ -18,5 +18,7 @@ export const Select = styled.select`
 export const Grey_option = styled.option`
   color: grey;
 `;
-
-export default { XInput, OpenCardMainContainer, Select, Grey_option };
+export const TD = styled.td`
+  /* padding: 1rem 0; */
+`;
+export default { TD, XInput, OpenCardMainContainer, Select, Grey_option };

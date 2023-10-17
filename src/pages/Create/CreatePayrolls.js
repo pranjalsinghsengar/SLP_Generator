@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Input from "../../components/Input";
 import HeaderCreate from "../../components/HeaderCreate";
 import { useNavigate } from "react-router-dom";
@@ -7,16 +7,58 @@ import Create from "../../components/Create";
 import { Grey_option, Select } from "../../components/Global";
 
 const CreatePayrolls = () => {
-  const { PayrollsData, setPayrollsData, PayrollsList, setPayrollsList } =
-    useContext(AppContext);
+  const {
+    EmployeeList,
+    PayrollsData,
+    setPayrollsData,
+    PayrollsList,
+    setPayrollsList,
+  } = useContext(AppContext);
   const navigate = useNavigate();
+  const [idexist, setidexist] = useState(false);
+  const [isEmployeeIdExist, setisEmployeeIdExist] = useState("");
+  const isEmployeeIdExistRef = useRef('');
   const handleInputChange = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setPayrollsData({
       ...PayrollsData,
       [name]: value,
     });
+
+    console.log("PayrollsData", PayrollsData);
   };
+
+  useEffect(() => {
+    const PerticularEmployee = EmployeeList.find(
+      (employee) => employee.EmployeeId === PayrollsData.EmployeeId
+    );
+
+    setisEmployeeIdExist(PerticularEmployee);
+    console.log("PerticularEmployee", PerticularEmployee);
+    console.log("XXXData", PayrollsData.EmployeeId);
+
+    console.log(isEmployeeIdExistRef.current, "isEmployeeIdExist");
+
+    if (isEmployeeIdExist) {
+      setPayrollsData({
+        ...PayrollsData,
+        status: isEmployeeIdExist.status,
+        firstName: isEmployeeIdExist.firstName,
+        lastName: isEmployeeIdExist.lastName,
+        gender: isEmployeeIdExist.gender,
+        uan: isEmployeeIdExist.uan,
+        email: isEmployeeIdExist.email,
+        department: isEmployeeIdExist.department,
+        designation: isEmployeeIdExist.designation,
+        dateOfJoining: isEmployeeIdExist.dateOfJoining,
+        bankName: isEmployeeIdExist.bankName,
+        accountNumber: isEmployeeIdExist.accountNumber,
+        ifscCode: isEmployeeIdExist.ifscCode,
+      });
+    }
+  }, [PayrollsData.EmployeeId, PayrollsData]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setPayrollsList([...PayrollsList, PayrollsData]);
@@ -26,6 +68,18 @@ const CreatePayrolls = () => {
       Year: "",
       Month: "",
       Type: "",
+      status: "",
+      firstName: "",
+      lastName: "",
+      gender: "",
+      uan: "",
+      email: "",
+      department: "",
+      designation: "",
+      dateOfJoining: "",
+      bankName: "",
+      accountNumber: "",
+      ifscCode: "",
     }));
     // console.log("PayrollsList ", PayrollsList);
   };
@@ -37,17 +91,19 @@ const CreatePayrolls = () => {
         BTNtitle='Open List'
         onBtnClick={() => navigate("/Payrolls")}
         className='border-b pb-5'
-
       />
       <div className='justify-center flex h-full'>
-        <form onSubmit={handleSubmit} className='flex flex-col w-2/4 justify-center gap-10'>
+        <form
+          onSubmit={handleSubmit}
+          className='flex flex-col w-2/4 justify-center gap-10'
+        >
           <Input
             type='text'
             name='EmployeeId'
             placeholder='Employee Id'
             value={PayrollsList.EmployeeId}
             onChange={handleInputChange}
-            className="border-b text-green-600"
+            className='border-b text-green-600'
           />
 
           {/* <Input
@@ -111,7 +167,7 @@ const CreatePayrolls = () => {
           value={PayrollsList.Type}
           onChange={handleInputChange}
         /> */}
-          <div className="flex justify-center">
+          <div className='flex justify-center'>
             <button type='submit' className='mt-10'>
               <Create BTNtitle='Submit' />
             </button>

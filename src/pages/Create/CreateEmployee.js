@@ -19,6 +19,7 @@ const CreateEmployee = () => {
   const navigate = useNavigate();
 
   // const [Status, setStatus] = useState("inactive");
+  console.log(isActive);
   const toggleActive = () => {
     if (isActive === "Active") {
       setIsActive("Inactive");
@@ -26,13 +27,19 @@ const CreateEmployee = () => {
       setIsActive("Active");
     }
   };
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      status: isActive,
+    });
+  },[isActive]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       EmployeeId: unique_id,
-      status: isActive,
+      // status: isActive,
       [name]: value,
     });
   };

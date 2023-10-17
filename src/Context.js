@@ -13,7 +13,7 @@ const Context = ({ children }) => {
 
   const [formData, setFormData] = useState({
     EmployeeId: null,
-    status: "",
+    status: null ,
     firstName: "",
     lastName: "",
     gender: "",
@@ -32,10 +32,10 @@ const Context = ({ children }) => {
     Month: "",
     Type: "",
   });
-  useEffect(() => {
-    console.log("EmployeeList ", EmployeeList);
-    console.log("PayrollsList ", PayrollsList);
-  });
+  // useEffect(() => {
+  //   console.log("EmployeeList ", EmployeeList);
+  //   console.log("PayrollsList ", PayrollsList);
+  // });
 
   return (
     <AppContext.Provider
