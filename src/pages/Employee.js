@@ -4,12 +4,10 @@ import Create from "../components/Create";
 import HeaderCreate from "../components/HeaderCreate";
 import { AppContext } from "../Context";
 import styled from "styled-components";
-import { TD } from "../components/Global";
+import { SpanDetail, TD } from "../components/Global";
 
 
-const SpanDetail = styled.span`
-  font-weight: 500;
-`;
+
 const Employee = () => {
   const navigate = useNavigate();
   // const CreateEmp = () => {

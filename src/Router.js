@@ -5,6 +5,7 @@ import CreateEmployee from './pages/Create/CreateEmployee'
 import CreatePayrolls from './pages/Create/CreatePayrolls'
 import Payrolls from './pages/Payrolls'
 import Dashboard from './pages/Dashboard'
+import CreateDipartment from './pages/Create/CreateDipartment'
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
     <Route path="/Payrolls" element={<Payrolls/>} />
     <Route path="/CreateEmployee" element={<CreateEmployee/>} />
     <Route path="/CreatePayrolls" element={<CreatePayrolls/>} />
+    <Route path="/CreateDipartment" element={<CreateDipartment/>} />
 
   </Routes>
   )

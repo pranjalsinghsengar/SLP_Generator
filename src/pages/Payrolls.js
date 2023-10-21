@@ -3,19 +3,24 @@ import Create from "../components/Create";
 import { useNavigate } from "react-router-dom";
 import HeaderCreate from "../components/HeaderCreate";
 import { AppContext } from "../Context";
-import { TD } from "../components/Global";
+import { SpanDetail, TD } from "../components/Global";
 
 const Payrolls = () => {
   const navigate = useNavigate();
   const [selectedEmployee, setselectedEmployee] = useState(null);
+const OpenEmp_List = () => {
+  navigate('/employees')
+}
+
 
   const {
     // EmployeeList,
     PayrollsData,
     setPayrollsData,
     PayrollsList,
-    setPayrollsList,
+    setPayrollsList,isFound
   } = useContext(AppContext);
+
   const showDetails = (data) => {
     setselectedEmployee(data);
     console.log(selectedEmployee);
@@ -64,7 +69,83 @@ const Payrolls = () => {
             ))}
           </tbody>
         </table>
-       
+        {selectedEmployee && (
+          <div className='shadow-xl shadow-slate-300 w-1/3 p-5  rounded-2xl text-lg  '>
+            <div className='font-semibold text-2xl flex justify-between'>
+              Personal Details{" "}
+              <p
+                className={`${
+                  selectedEmployee.status === "Active"
+                    ? "text-green-800"
+                    : "text-red-500"
+                }`}
+              >
+                {selectedEmployee.EmployeeId}
+              </p>
+            </div>
+
+            <div className='mt-5'>
+              <p
+                className={`${
+                  selectedEmployee.status === "Active"
+                    ? "text-green-800"
+                    : "text-red-500"
+                }`}
+              >
+                {" "}
+                <SpanDetail className='text-black'>Status : </SpanDetail>
+                {selectedEmployee.status}
+              </p>
+              <p>
+                <SpanDetail> Full Name : </SpanDetail>{" "}
+                {selectedEmployee.firstName} {selectedEmployee.lastName}{" "}
+              </p>
+              <p>
+                <SpanDetail>Gender : </SpanDetail>
+                {selectedEmployee.gender}
+              </p>
+              <p>
+                <SpanDetail>Email : </SpanDetail>
+                {selectedEmployee.email}
+              </p>
+              {/*  */}
+              <p className='font-semibold text-2xl border-b border-t py-2 text-center text-gray-500'>
+                Bank Details
+              </p>
+              <p>
+                <SpanDetail>Bank Name :</SpanDetail>
+                {selectedEmployee.bankName}
+              </p>
+              <p>
+                <SpanDetail>Account Number : </SpanDetail>
+                {selectedEmployee.accountNumber}
+              </p>
+              <p>
+                <SpanDetail>IFSC Code </SpanDetail>
+                {selectedEmployee.ifscCode}
+              </p>
+              <p className='font-semibold text-2xl border-b border-t py-2 text-center text-gray-500'>
+                Other Details
+              </p>
+              <p>
+                <SpanDetail>Department </SpanDetail>
+                {selectedEmployee.department}
+              </p>
+              <p>
+                <SpanDetail>Designation </SpanDetail>
+                {selectedEmployee.designation}
+              </p>
+              <p>
+                <SpanDetail>Date of Joining </SpanDetail>
+                {selectedEmployee.dateOfJoining}
+              </p>
+              <p>
+                <SpanDetail>UAN </SpanDetail>
+                {selectedEmployee.uan}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

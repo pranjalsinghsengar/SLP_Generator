@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { setGoDashboard } = useContext(AppContext);
+  const { departments,setGoDashboard } = useContext(AppContext);
+  const departmentCount = departments.length;
 
   const CreateEmployeeHandler = () => {
     navigate("/CreateEmployee");
@@ -15,6 +16,10 @@ const Dashboard = () => {
   };
   const CreatePayrollsHandler = () => {
     navigate("/CreatePayrolls");
+    setGoDashboard(false);
+  };
+  const CreateDipartmentHandler = () => {
+    navigate("/CreateDipartment");
     setGoDashboard(false);
   };
   return (
@@ -50,9 +55,9 @@ const Dashboard = () => {
         />
         <DashCard
           title='Department'
-          GreenText={"45"}
-          OpenList={{}}
-          CreateNew={CreateEmployeeHandler}
+          GreenText={departmentCount}
+          // OpenList={{}}
+          CreateNew={CreateDipartmentHandler}
         />
       </div>
     </div>

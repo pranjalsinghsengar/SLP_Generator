@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 import { v4 as uuid } from "uuid";
 
 export const AppContext = createContext();
@@ -7,7 +7,11 @@ const Context = ({ children }) => {
   const unique_id = uuid().slice(0, 8);
   const [GoDashboard, setGoDashboard] = useState(true);
   const [isActive, setIsActive] = useState("Inactive");
-
+  const [isFound, setIsFound] = useState({
+  
+  },{
+   
+  })
   const [EmployeeList, setEmployeeList] = useState([]);
   const [PayrollsList, setPayrollsList] = useState([]);
 
@@ -32,10 +36,9 @@ const Context = ({ children }) => {
     Month: "",
     Type: "",
   });
-  // useEffect(() => {
-  //   console.log("EmployeeList ", EmployeeList);
-  //   console.log("PayrollsList ", PayrollsList);
-  // });
+  const [departments, setDepartments] = useState([]);
+
+
 
   return (
     <AppContext.Provider
@@ -52,7 +55,8 @@ const Context = ({ children }) => {
         PayrollsList,
         setPayrollsList,
         isActive,
-        setIsActive,
+        setIsActive,isFound,
+        setIsFound,departments,setDepartments
       }}
     >
       {children}

@@ -20,6 +20,7 @@ const DashCard = ({
   RedText,
   OpenList,
   CreateNew,
+  CreateNew_ClassName
 }) => {
   return (
     <DashCardContainer className='flex flex-col gap-3 p-5 shadow-lg shadow-slate-400  rounded-xl'>
@@ -71,18 +72,18 @@ const DashCard = ({
         {/* ===================================================================================================== */}
         {/* buttons */}
         <div className='flex justify-between'>
-          <div
+          {OpenList && <div
             className='px-14 py-3 rounded-lg bg-green-800 text-white cursor-pointer'
             onClick={OpenList}
           >
             Open List{" "}
-          </div>
-          <div
-            className='flex px-4 items-center text-3xl rounded-lg bg-green-800 text-white cursor-pointer'
+          </div>}
+          { CreateNew && <div
+            className={`flex px-4 items-center text-3xl rounded-lg bg-green-800 text-white cursor-pointer ${CreateNew_ClassName}`}
             onClick={CreateNew}
           >
             +
-          </div>
+          </div>}
         </div>
       </div>
     </DashCardContainer>

@@ -12,52 +12,72 @@ const CreatePayrolls = () => {
     PayrollsData,
     setPayrollsData,
     PayrollsList,
-    setPayrollsList,
+    setPayrollsList,isFound,setIsFound
   } = useContext(AppContext);
   const navigate = useNavigate();
   const [idexist, setidexist] = useState(false);
-  const [isEmployeeIdExist, setisEmployeeIdExist] = useState("");
-  const isEmployeeIdExistRef = useRef('');
+
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState("");
+
+
+  const handleEmployeeIdChange = (event) => {
+    const selectedEmployee = EmployeeList.find(
+      (employee) => employee.EmployeeId === event.target.value
+    );
+  
+    if (selectedEmployee) {
+      setIsFound({...isFound,  type:'found',
+      message:'Employee data available'})
+
+      setPayrollsData({
+        ...PayrollsData,
+        EmployeeId: selectedEmployee.EmployeeId,
+        status: selectedEmployee.status,
+        firstName: selectedEmployee.firstName,
+        lastName: selectedEmployee.lastName,
+        gender: selectedEmployee.gender,
+        uan: selectedEmployee.uan,
+        email: selectedEmployee.email,
+        department: selectedEmployee.department,
+        designation: selectedEmployee.designation,
+        dateOfJoining: selectedEmployee.dateOfJoining,
+        bankName: selectedEmployee.bankName,
+        accountNumber: selectedEmployee.accountNumber,
+        ifscCode: selectedEmployee.ifscCode,
+      });
+    } else {
+      setIsFound({...isFound,type:'notfound',
+      message:`Incorrect ID, Try again or `})
+
+      setPayrollsData({
+        EmployeeId: null,
+        status: null,
+        firstName: "",
+        lastName: "",
+        gender: "",
+        uan: "",
+        email: "",
+        department: "",
+        designation: "",
+        dateOfJoining: "",
+        bankName: "",
+        accountNumber: "",
+        ifscCode: "",
+      });
+    }
+  };
+  
   const handleInputChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     setPayrollsData({
-      ...PayrollsData,
-      [name]: value,
+        ...PayrollsData,
+        [name]: value,
     });
-
-    console.log("PayrollsData", PayrollsData);
   };
 
-  useEffect(() => {
-    const PerticularEmployee = EmployeeList.find(
-      (employee) => employee.EmployeeId === PayrollsData.EmployeeId
-    );
 
-    setisEmployeeIdExist(PerticularEmployee);
-    console.log("PerticularEmployee", PerticularEmployee);
-    console.log("XXXData", PayrollsData.EmployeeId);
-
-    console.log(isEmployeeIdExistRef.current, "isEmployeeIdExist");
-
-    if (isEmployeeIdExist) {
-      setPayrollsData({
-        ...PayrollsData,
-        status: isEmployeeIdExist.status,
-        firstName: isEmployeeIdExist.firstName,
-        lastName: isEmployeeIdExist.lastName,
-        gender: isEmployeeIdExist.gender,
-        uan: isEmployeeIdExist.uan,
-        email: isEmployeeIdExist.email,
-        department: isEmployeeIdExist.department,
-        designation: isEmployeeIdExist.designation,
-        dateOfJoining: isEmployeeIdExist.dateOfJoining,
-        bankName: isEmployeeIdExist.bankName,
-        accountNumber: isEmployeeIdExist.accountNumber,
-        ifscCode: isEmployeeIdExist.ifscCode,
-      });
-    }
-  }, [PayrollsData.EmployeeId, PayrollsData]);
+  console.log(PayrollsData, "PayrollsData");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,7 +101,6 @@ const CreatePayrolls = () => {
       accountNumber: "",
       ifscCode: "",
     }));
-    // console.log("PayrollsList ", PayrollsList);
   };
 
   return (
@@ -97,14 +116,20 @@ const CreatePayrolls = () => {
           onSubmit={handleSubmit}
           className='flex flex-col w-2/4 justify-center gap-10'
         >
+        <div className="w-full flex">
+
           <Input
-            type='text'
-            name='EmployeeId'
-            placeholder='Employee Id'
-            value={PayrollsList.EmployeeId}
-            onChange={handleInputChange}
-            className='border-b text-green-600'
-          />
+    type='text'
+    name='EmployeeId'
+    placeholder='Employee Id'
+    value={PayrollsData.EmployeeId}  
+    onChange={handleEmployeeIdChange}
+    className='border-b text-green-600'
+/>
+
+ { PayrollsData.EmployeeId && <p className= {isFound.type === "found" ? 'text-green-800' : 'text-red-500' }>{isFound.message}</p>
+ }
+ </div>
 
           {/* <Input
           type='text'
