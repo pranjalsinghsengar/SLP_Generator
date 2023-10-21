@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const OpenCardMainContainer = styled.div`
+height:90%;
   padding: 2.5rem;
   display: flex;
   flex-direction: column;
@@ -19,10 +20,17 @@ export const Grey_option = styled.option`
   color: grey;
 `;
 export const TD = styled.td`
-  /* padding: 1rem 0; */
+  /* padding: 1rem 0; */.
 `;
 
 export const SpanDetail = styled.span`
-font-weight: 500;
+font-weight: 600;
 `;
+export const Option_Text = styled.label`
+ border-radius: 10px;
+ background: #00000010;
+ padding: 0 10px;
+`; 
+
+
 export default { TD, XInput, OpenCardMainContainer, Select, Grey_option ,SpanDetail};

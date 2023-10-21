@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../Context";
 import Input from "../../components/Input";
 import Create from "../../components/Create";
-import { OpenCardMainContainer } from "../../components/Global";
+import { Grey_option, OpenCardMainContainer, Select } from "../../components/Global";
 import HeaderCreate from "../../components/HeaderCreate";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const CreateEmployee = () => {
     EmployeeList,
     setEmployeeList,
     isActive,
-    setIsActive,
+    setIsActive,departments
   } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -152,13 +152,16 @@ const CreateEmployee = () => {
         />
 
         <h1>... Detais</h1>
-        <Input
-          type='text'
-          name='department'
-          placeholder='Department'
-          value={formData.department}
-          onChange={handleInputChange}
-        />
+      <Select id="" >
+      <Grey_option> Select Department</Grey_option>
+        {departments.map((department, index) => (
+          <option key={index} value={department}>
+            {department}
+          </option>
+        ))}
+      </Select>
+
+       
         <Input
           type='text'
           name='designation'

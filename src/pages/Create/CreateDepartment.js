@@ -5,7 +5,7 @@ import Input from '../../components/Input';
 import Create from '../../components/Create';
 import { AppContext } from '../../Context';
 
-const CreateDipartment = () => {
+const CreateDepartment = () => {
     const navigate = useNavigate();
     const [departmentName, setDepartmentName] = useState('');
     const { departments,setDepartments} = useContext(AppContext);
@@ -40,7 +40,7 @@ const CreateDipartment = () => {
       </div>
       <div className='flex justify-center'>
             <button type='submit' className='mt-10'>
-              <Create BTNtitle='Add Department' CreateNew_ClassName="text-6xl" />
+              <Create BTNtitle='Add Department' />
             </button>
           </div>
     </form>
@@ -59,4 +59,4 @@ const CreateDipartment = () => {
   )
 }
 
-export default CreateDipartment
+export default CreateDepartment

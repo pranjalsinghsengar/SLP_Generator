@@ -7,8 +7,12 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { departments,setGoDashboard } = useContext(AppContext);
+  const {EmployeeList,PayrollsList, departments,setGoDashboard } = useContext(AppContext);
   const departmentCount = departments.length;
+  const employeeCount = EmployeeList.length;
+  const activeEmployeeCount = EmployeeList.filter(employee => employee.status === "Active").length;
+  const nonActiveEmployeeCount = EmployeeList.filter(employee => employee.status === "Inactive").length;
+
 
   const CreateEmployeeHandler = () => {
     navigate("/CreateEmployee");
@@ -30,9 +34,9 @@ const Dashboard = () => {
       <div className='flex flex-wrap gap-10'>
         <DashCard
           title='Employees'
-          TotalCount='12'
-          GreenText={"45"}
-          RedText={"10"}
+          TotalCount={employeeCount}
+          GreenText={activeEmployeeCount}
+          RedText={nonActiveEmployeeCount}
           OpenList={() => {
             navigate("/Employee");
             setGoDashboard(false);
@@ -57,6 +61,7 @@ const Dashboard = () => {
           title='Department'
           GreenText={departmentCount}
           // OpenList={{}}
+          CreateNew_ClassName="h-12 pb-2"
           CreateNew={CreateDipartmentHandler}
         />
       </div>

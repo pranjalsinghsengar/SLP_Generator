@@ -3,7 +3,7 @@ import Create from "../components/Create";
 import { useNavigate } from "react-router-dom";
 import HeaderCreate from "../components/HeaderCreate";
 import { AppContext } from "../Context";
-import { SpanDetail, TD } from "../components/Global";
+import { Option_Text, SpanDetail, TD } from "../components/Global";
 
 const Payrolls = () => {
   const navigate = useNavigate();
@@ -41,12 +41,11 @@ const OpenEmp_List = () => {
               <th>Employee ID</th>
               <th>Status</th>
               <th>First Name</th>
-              <th>Gender</th>
               <th>Email</th>
               <th>Show</th>
             </tr>
           </thead>
-          <tbody className='text-center '>
+          <tbody className='text-center'>
             {PayrollsList.map((data, index) => (
               <tr key={index} className=' h-14 border-b '>
                 <TD>{data.EmployeeId}</TD>
@@ -58,7 +57,6 @@ const OpenEmp_List = () => {
                   {data.status}
                 </TD>
                 <TD>{data.firstName}</TD>
-                <TD>{data.gender}</TD>
                 <TD>{data.email}</TD>
                 <Create
                   BTNtitle='Details'
@@ -69,8 +67,9 @@ const OpenEmp_List = () => {
             ))}
           </tbody>
         </table>
+        
         {selectedEmployee && (
-          <div className='shadow-xl shadow-slate-300 w-1/3 p-5  rounded-2xl text-lg  '>
+          <div className='shadow-xl shadow-slate-300 w-2/3 p-5  rounded-2xl text-lg overflow-auto '>
             <div className='font-semibold text-2xl flex justify-between'>
               Personal Details{" "}
               <p
@@ -85,6 +84,9 @@ const OpenEmp_List = () => {
             </div>
 
             <div className='mt-5'>
+            <div className="flex justify-between">
+              <div>
+
               <p
                 className={`${
                   selectedEmployee.status === "Active"
@@ -98,50 +100,67 @@ const OpenEmp_List = () => {
               </p>
               <p>
                 <SpanDetail> Full Name : </SpanDetail>{" "}
-                {selectedEmployee.firstName} {selectedEmployee.lastName}{" "}
+               <Option_Text> {selectedEmployee.firstName} {selectedEmployee.lastName}{" "}</Option_Text>
               </p>
               <p>
                 <SpanDetail>Gender : </SpanDetail>
-                {selectedEmployee.gender}
+                <Option_Text>{selectedEmployee.gender}</Option_Text>
               </p>
               <p>
                 <SpanDetail>Email : </SpanDetail>
-                {selectedEmployee.email}
+                <Option_Text>{selectedEmployee.email}</Option_Text>
               </p>
+</div>
+<div className=" p-2">
+<p>
+                <SpanDetail> Year : </SpanDetail>{" "}
+                 <Option_Text>{selectedEmployee.Year}{" "}</Option_Text>
+              </p>
+              <p>
+                <SpanDetail>Month : </SpanDetail>
+               <Option_Text> {selectedEmployee.Month}</Option_Text>
+              </p>
+              <p>
+                <SpanDetail>Type : </SpanDetail>
+                <Option_Text>{selectedEmployee.Type}</Option_Text>
+              </p>
+</div>
+            </div>
+
               {/*  */}
               <p className='font-semibold text-2xl border-b border-t py-2 text-center text-gray-500'>
                 Bank Details
               </p>
               <p>
                 <SpanDetail>Bank Name :</SpanDetail>
-                {selectedEmployee.bankName}
+                <Option_Text>{selectedEmployee.bankName}</Option_Text>
               </p>
               <p>
                 <SpanDetail>Account Number : </SpanDetail>
-                {selectedEmployee.accountNumber}
+                <Option_Text>{selectedEmployee.accountNumber}</Option_Text>
               </p>
               <p>
                 <SpanDetail>IFSC Code </SpanDetail>
-                {selectedEmployee.ifscCode}
+                <Option_Text>{selectedEmployee.ifscCode}</Option_Text>
               </p>
               <p className='font-semibold text-2xl border-b border-t py-2 text-center text-gray-500'>
                 Other Details
               </p>
               <p>
                 <SpanDetail>Department </SpanDetail>
-                {selectedEmployee.department}
+                <Option_Text>{selectedEmployee.department}</Option_Text>
               </p>
               <p>
                 <SpanDetail>Designation </SpanDetail>
-                {selectedEmployee.designation}
+               <Option_Text> {selectedEmployee.designation}</Option_Text>
               </p>
               <p>
                 <SpanDetail>Date of Joining </SpanDetail>
-                {selectedEmployee.dateOfJoining}
+                <Option_Text>{selectedEmployee.dateOfJoining}</Option_Text>
               </p>
               <p>
                 <SpanDetail>UAN </SpanDetail>
-                {selectedEmployee.uan}
+                <Option_Text>{selectedEmployee.uan}</Option_Text>
               </p>
             </div>
           </div>

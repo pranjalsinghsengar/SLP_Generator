@@ -71,7 +71,7 @@ const DashCard = ({
 
         {/* ===================================================================================================== */}
         {/* buttons */}
-        <div className='flex justify-between'>
+        <div className={ OpenList ? "flex justify-between" : "flex justify-end" }>
           {OpenList && <div
             className='px-14 py-3 rounded-lg bg-green-800 text-white cursor-pointer'
             onClick={OpenList}
