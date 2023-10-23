@@ -4,12 +4,10 @@ import Create from "../components/Create";
 import HeaderCreate from "../components/HeaderCreate";
 import { AppContext } from "../Context";
 import styled from "styled-components";
-import { TD } from "../components/Global";
+import { SpanDetail, TD } from "../components/Global";
 
 
-const SpanDetail = styled.span`
-  font-weight: 500;
-`;
+
 const Employee = () => {
   const navigate = useNavigate();
   // const CreateEmp = () => {
@@ -24,16 +22,18 @@ const Employee = () => {
   };
 
   return (
-    <>
+    <div className="h-screen bg-white">
       <HeaderCreate
         title='Employees List'
         BTNtitle='Add Employee'
         onBtnClick={() => navigate("/CreateEmployee")}
         className='border-b pb-5'
       />
-      <div className='w-full flex justify-between gap-10'>
-        <table className={`h-fit ${selectedEmployee ? "w-3/4" : "w-full"}`}>
-          <thead>
+      <div className='w-full h-full  flex items-start justify-between gap-4 '>
+      <div  className={` mt-5 h-full overflow-y-auto ${selectedEmployee ? "w-3/4" : "w-full"}`}>
+
+        <table className="w-full">
+          <thead  style={{ position: 'sticky', top: 0, background: 'white' }}>
             <tr className='border-b '>
               <th>Employee ID</th>
               <th>Status</th>
@@ -43,7 +43,7 @@ const Employee = () => {
               <th>Show</th>
             </tr>
           </thead>
-          <tbody className='text-center '>
+          <tbody className='text-center  '>
             {EmployeeList.map((data, index) => (
               <tr key={index} className=' h-14 border-b '>
                 <TD>{data.EmployeeId}</TD>
@@ -57,17 +57,23 @@ const Employee = () => {
                 <TD>{data.firstName}</TD>
                 <TD>{data.gender}</TD>
                 <TD>{data.email}</TD>
+                <td >
+                  
+              
                 <Create
                   BTNtitle='Details'
                   onBtnClick={() => showDetails(data)}
                   className=''
                 />
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+
         {selectedEmployee && (
-          <div className='shadow-xl shadow-slate-300 w-1/3 p-5  rounded-2xl text-lg'>
+          <div className=' shadow-xl shadow-slate-300 w-1/3 p-5 overflow-auto h-full  rounded-2xl text-lg'>
             <div className='font-semibold text-2xl flex justify-between'>
               Personal Details{" "}
               <p
@@ -144,7 +150,7 @@ const Employee = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

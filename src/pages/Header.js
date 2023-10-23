@@ -32,13 +32,13 @@ const Header = () => {
             to='/CreatePayrolls'
             onClick={() => setGoDashboard(false)}
           >
-            Total Positions
+              Positions
           </Link>
           <Link
-            to='/CreatePayrolls'
+            to='/CreateDepartment'
             onClick={() => setGoDashboard(false)}
           >
-            Total Department
+            Department
           </Link>
         </div>
       </div>

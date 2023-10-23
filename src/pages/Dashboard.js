@@ -7,7 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { setGoDashboard } = useContext(AppContext);
+  const {EmployeeList,PayrollsList, departments,setGoDashboard } = useContext(AppContext);
+  const departmentCount = departments.length;
+  const employeeCount = EmployeeList.length;
+  const PayrollsCount = PayrollsList.length;
+  const activeEmployeeCount = EmployeeList.filter(employee => employee.status === "Active").length;
+  const nonActiveEmployeeCount = EmployeeList.filter(employee => employee.status === "Inactive").length;
+
 
   const CreateEmployeeHandler = () => {
     navigate("/CreateEmployee");
@@ -15,6 +21,10 @@ const Dashboard = () => {
   };
   const CreatePayrollsHandler = () => {
     navigate("/CreatePayrolls");
+    setGoDashboard(false);
+  };
+  const CreateDipartmentHandler = () => {
+    navigate("/CreateDepartment");
     setGoDashboard(false);
   };
   return (
@@ -25,9 +35,9 @@ const Dashboard = () => {
       <div className='flex flex-wrap gap-10'>
         <DashCard
           title='Employees'
-          TotalCount='12'
-          GreenText={"45"}
-          RedText={"10"}
+          TotalCount={employeeCount}
+          GreenText={activeEmployeeCount}
+          RedText={nonActiveEmployeeCount}
           OpenList={() => {
             navigate("/Employee");
             setGoDashboard(false);
@@ -37,22 +47,26 @@ const Dashboard = () => {
         <DashCard
           title='Payrolls'
           TotalCount='12'
-          GreenText={"45"}
-          RedText={"10"}
-          OpenList={{}}
+          GreenText={employeeCount}
+          RedText={PayrollsCount}
+          OpenList={() => {
+            navigate("/Payrolls");
+            setGoDashboard(false);
+          }}
           CreateNew={CreatePayrollsHandler}
         />
         <DashCard
           title='Positions'
           GreenText={"45"}
           OpenList={{}}
-          CreateNew={CreateEmployeeHandler}
+          CreateNew={{}}
         />
         <DashCard
           title='Department'
-          GreenText={"45"}
-          OpenList={{}}
-          CreateNew={CreateEmployeeHandler}
+          GreenText={departmentCount}
+          // OpenList={{}}
+          CreateNew_ClassName="h-12 pb-2"
+          CreateNew={CreateDipartmentHandler}
         />
       </div>
     </div>

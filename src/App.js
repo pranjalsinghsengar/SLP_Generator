@@ -22,7 +22,7 @@ const App = () => {
           <Dashboard />
           {!GoDashboard && (
             <div className='w-full h-full backdrop-blur-lg flex justify-center items-center absolute left-1/2 top-1/2 -translate-x-2/4 -translate-y-2/4 '>
-              <OpenCardMainContainer className=' w-4/5 h-4/5 bg-white rounded-2xl overflow-hidden shadow-2xl'>
+              <OpenCardMainContainer className=' w-4/5 bg-white rounded-2xl overflow-hidden shadow-2xl'>
                 {/* <SideMenu />
             <Router /> */}
                 {/* <Payrolls />
