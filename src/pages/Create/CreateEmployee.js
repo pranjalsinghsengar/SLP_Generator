@@ -46,11 +46,12 @@ const CreateEmployee = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsActive("Inactive")
     setEmployeeList([...EmployeeList, formData]);
     setFormData((prev) => ({
       ...prev,
       EmployeeId: null,
-      status: "",
+      status: "Inactive",
       firstName: "",
       lastName: "",
       gender: "",

@@ -6,37 +6,44 @@ import { AppContext } from "../Context";
 import { Option_Text, SpanDetail, TD } from "../components/Global";
 
 const Payrolls = () => {
-  const navigate = useNavigate();
-  const [selectedEmployee, setselectedEmployee] = useState(null);
-const OpenEmp_List = () => {
-  navigate('/employees')
-}
-
-
   const {
     // EmployeeList,
     PayrollsData,
     setPayrollsData,
     PayrollsList,
-    setPayrollsList,isFound
+    setPayrollsList,isFound,selectedEmployee, setselectedEmployee
   } = useContext(AppContext);
+
+  const navigate = useNavigate();
+const OpenEmp_List = () => {
+  navigate('/employees')
+}
+
+
 
   const showDetails = (data) => {
     setselectedEmployee(data);
-    console.log(selectedEmployee);
+    // console.log(selectedEmployee);
+  };
+
+  const ShowPdfHandler = (data) => {
+    // setselectedEmployee(data);
+    navigate("/PaySlip" , { state: { data } })
   };
 
   return (
-    <>
+    <div className="h-screen">
      <HeaderCreate
         title='Payrolls List'
         BTNtitle='Add Payroll'
         onBtnClick={() => navigate("/CreatePayrolls")}
         className='border-b pb-5'
       />
-        <div className='w-full flex justify-between gap-10'>
-        <table className={`h-fit ${selectedEmployee ? "w-3/4" : "w-full"}`}>
-          <thead>
+        <div className='w-full h-full flex items-start  justify-between gap-4'>
+        <div className={` mt-5 h-full overflow-y-auto ${selectedEmployee ? "w-3/4" : "w-full"}`}>
+
+        <table className="w-full">
+          <thead style={{ position: 'sticky', top: 0, background: 'white' }}>
             <tr className='border-b '>
               <th>Employee ID</th>
               <th>Status</th>
@@ -58,15 +65,31 @@ const OpenEmp_List = () => {
                 </TD>
                 <TD>{data.firstName}</TD>
                 <TD>{data.email}</TD>
+                <td>
+                <div className="flex justify-center gap-3">
+
+
+                <Create
+                  BTNtitle='Slip'
+                  onBtnClick={() => 
+                    ShowPdfHandler(data)
+                  }
+                  className=''
+                />
                 <Create
                   BTNtitle='Details'
                   onBtnClick={() => showDetails(data)}
                   className=''
                 />
+                </div>
+
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
+        </div>
+
         
         {selectedEmployee && (
           <div className='shadow-xl shadow-slate-300 w-2/3 p-5  rounded-2xl text-lg overflow-auto '>
@@ -166,7 +189,7 @@ const OpenEmp_List = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

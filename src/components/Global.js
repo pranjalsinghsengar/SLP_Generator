@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const OpenCardMainContainer = styled.div`
-height:90%;
+min-height:90%;
+max-height: 100%;
+
   padding: 2.5rem;
   display: flex;
   flex-direction: column;

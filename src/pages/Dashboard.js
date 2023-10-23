@@ -10,6 +10,7 @@ const Dashboard = () => {
   const {EmployeeList,PayrollsList, departments,setGoDashboard } = useContext(AppContext);
   const departmentCount = departments.length;
   const employeeCount = EmployeeList.length;
+  const PayrollsCount = PayrollsList.length;
   const activeEmployeeCount = EmployeeList.filter(employee => employee.status === "Active").length;
   const nonActiveEmployeeCount = EmployeeList.filter(employee => employee.status === "Inactive").length;
 
@@ -23,7 +24,7 @@ const Dashboard = () => {
     setGoDashboard(false);
   };
   const CreateDipartmentHandler = () => {
-    navigate("/CreateDipartment");
+    navigate("/CreateDepartment");
     setGoDashboard(false);
   };
   return (
@@ -46,16 +47,19 @@ const Dashboard = () => {
         <DashCard
           title='Payrolls'
           TotalCount='12'
-          GreenText={"45"}
-          RedText={"10"}
-          OpenList={{}}
+          GreenText={employeeCount}
+          RedText={PayrollsCount}
+          OpenList={() => {
+            navigate("/Payrolls");
+            setGoDashboard(false);
+          }}
           CreateNew={CreatePayrollsHandler}
         />
         <DashCard
           title='Positions'
           GreenText={"45"}
           OpenList={{}}
-          CreateNew={CreateEmployeeHandler}
+          CreateNew={{}}
         />
         <DashCard
           title='Department'

@@ -7,17 +7,15 @@ const Context = ({ children }) => {
   const unique_id = uuid().slice(0, 8);
   const [GoDashboard, setGoDashboard] = useState(true);
   const [isActive, setIsActive] = useState("Inactive");
-  const [isFound, setIsFound] = useState({
-  
-  },{
-   
-  })
+  const [isFound, setIsFound] = useState()
+  const [selectedEmployee, setselectedEmployee] = useState();
+
   const [EmployeeList, setEmployeeList] = useState([]);
   const [PayrollsList, setPayrollsList] = useState([]);
 
   const [formData, setFormData] = useState({
     EmployeeId: null,
-    status: null ,
+    status: "Inactive" ,
     firstName: "",
     lastName: "",
     gender: "",
@@ -56,7 +54,7 @@ const Context = ({ children }) => {
         setPayrollsList,
         isActive,
         setIsActive,isFound,
-        setIsFound,departments,setDepartments
+        setIsFound,departments,setDepartments,selectedEmployee, setselectedEmployee
       }}
     >
       {children}
