@@ -7,7 +7,7 @@ const Context = ({ children }) => {
   const unique_id = uuid().slice(0, 8);
   const [GoDashboard, setGoDashboard] = useState(true);
   const [isActive, setIsActive] = useState("Inactive");
-  const [isFound, setIsFound] = useState()
+  const [isFound, setIsFound] = useState();
   const [selectedEmployee, setselectedEmployee] = useState();
 
   const [EmployeeList, setEmployeeList] = useState([]);
@@ -15,7 +15,7 @@ const Context = ({ children }) => {
 
   const [formData, setFormData] = useState({
     EmployeeId: null,
-    status: "Inactive" ,
+    status: "Inactive",
     firstName: "",
     lastName: "",
     gender: "",
@@ -23,20 +23,23 @@ const Context = ({ children }) => {
     email: "",
     department: "",
     designation: "",
+    position: "",
     dateOfJoining: "",
     bankName: "",
     accountNumber: "",
     ifscCode: "",
+    pdfHistory:'',
   });
   const [PayrollsData, setPayrollsData] = useState({
     EmployeeId: "",
     Year: "",
     Month: "",
     Type: "",
+    
   });
   const [departments, setDepartments] = useState([]);
-
-
+  const [Positions, setPositions] = useState([]);
+  const [SlipList, setSlipList] = useState([]);
 
   return (
     <AppContext.Provider
@@ -53,8 +56,17 @@ const Context = ({ children }) => {
         PayrollsList,
         setPayrollsList,
         isActive,
-        setIsActive,isFound,
-        setIsFound,departments,setDepartments,selectedEmployee, setselectedEmployee
+        setIsActive,
+        isFound,
+        setIsFound,
+        departments,
+        setDepartments,
+        selectedEmployee,
+        setselectedEmployee,
+        Positions,
+        setPositions,
+        SlipList,
+        setSlipList,
       }}
     >
       {children}

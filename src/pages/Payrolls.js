@@ -7,11 +7,7 @@ import { Option_Text, SpanDetail, TD } from "../components/Global";
 
 const Payrolls = () => {
   const {
-    // EmployeeList,
-    PayrollsData,
-    setPayrollsData,
-    PayrollsList,
-    setPayrollsList,isFound,selectedEmployee, setselectedEmployee
+    PayrollsList,selectedEmployee, setselectedEmployee
   } = useContext(AppContext);
 
   const navigate = useNavigate();
@@ -88,9 +84,7 @@ const OpenEmp_List = () => {
             ))}
           </tbody>
         </table>
-        </div>
-
-        
+        </div>        
         {selectedEmployee && (
           <div className='shadow-xl shadow-slate-300 w-2/3 p-5  rounded-2xl text-lg overflow-auto '>
             <div className='font-semibold text-2xl flex justify-between'>
@@ -133,9 +127,9 @@ const OpenEmp_List = () => {
                 <SpanDetail>Email : </SpanDetail>
                 <Option_Text>{selectedEmployee.email}</Option_Text>
               </p>
-</div>
-<div className=" p-2">
-<p>
+            </div>  
+            <div className=" p-2">
+              <p>
                 <SpanDetail> Year : </SpanDetail>{" "}
                  <Option_Text>{selectedEmployee.Year}{" "}</Option_Text>
               </p>
@@ -147,7 +141,7 @@ const OpenEmp_List = () => {
                 <SpanDetail>Type : </SpanDetail>
                 <Option_Text>{selectedEmployee.Type}</Option_Text>
               </p>
-</div>
+            </div>
             </div>
 
               {/*  */}
@@ -176,6 +170,10 @@ const OpenEmp_List = () => {
               <p>
                 <SpanDetail>Designation </SpanDetail>
                <Option_Text> {selectedEmployee.designation}</Option_Text>
+              </p>
+              <p>
+                <SpanDetail>Position </SpanDetail>
+               <Option_Text> {selectedEmployee.position}</Option_Text>
               </p>
               <p>
                 <SpanDetail>Date of Joining </SpanDetail>

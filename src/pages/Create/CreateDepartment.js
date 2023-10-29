@@ -12,9 +12,7 @@ const CreateDepartment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add the new department to the list
     setDepartments([...departments, departmentName]);
-    // Reset the form input
     setDepartmentName('');
   };
   return (

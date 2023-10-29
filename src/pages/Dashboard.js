@@ -7,13 +7,18 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const {EmployeeList,PayrollsList, departments,setGoDashboard } = useContext(AppContext);
+  const { EmployeeList, PayrollsList, departments, setGoDashboard ,Positions} =
+    useContext(AppContext);
   const departmentCount = departments.length;
   const employeeCount = EmployeeList.length;
   const PayrollsCount = PayrollsList.length;
-  const activeEmployeeCount = EmployeeList.filter(employee => employee.status === "Active").length;
-  const nonActiveEmployeeCount = EmployeeList.filter(employee => employee.status === "Inactive").length;
-
+  const PositionsCount = Positions.length
+  const activeEmployeeCount = EmployeeList.filter(
+    (employee) => employee.status === "Active"
+  ).length;
+  const nonActiveEmployeeCount = EmployeeList.filter(
+    (employee) => employee.status === "Inactive"
+  ).length;
 
   const CreateEmployeeHandler = () => {
     navigate("/CreateEmployee");
@@ -57,15 +62,18 @@ const Dashboard = () => {
         />
         <DashCard
           title='Positions'
-          GreenText={"45"}
+          GreenText={PositionsCount}
           OpenList={{}}
-          CreateNew={{}}
+          CreateNew={() => {
+            navigate("/CreatePositions");
+            setGoDashboard(false);
+          }}
         />
         <DashCard
           title='Department'
           GreenText={departmentCount}
           // OpenList={{}}
-          CreateNew_ClassName="h-12 pb-2"
+          CreateNew_ClassName='h-12 pb-2'
           CreateNew={CreateDipartmentHandler}
         />
       </div>

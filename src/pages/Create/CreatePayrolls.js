@@ -12,22 +12,26 @@ const CreatePayrolls = () => {
     PayrollsData,
     setPayrollsData,
     PayrollsList,
-    setPayrollsList,isFound,setIsFound
+    setPayrollsList,
+    isFound,
+    setIsFound,
   } = useContext(AppContext);
   const navigate = useNavigate();
   const [idexist, setidexist] = useState(false);
 
   const [selectedEmployeeId, setSelectedEmployeeId] = useState("");
 
-
   const handleEmployeeIdChange = (event) => {
     const selectedEmployee = EmployeeList.find(
       (employee) => employee.EmployeeId === event.target.value
     );
-  
+
     if (selectedEmployee) {
-      setIsFound({...isFound,  type:'found',
-      message:'Employee data available'})
+      setIsFound({
+        ...isFound,
+        type: "found",
+        message: "Employee data available",
+      });
 
       setPayrollsData({
         ...PayrollsData,
@@ -44,10 +48,14 @@ const CreatePayrolls = () => {
         bankName: selectedEmployee.bankName,
         accountNumber: selectedEmployee.accountNumber,
         ifscCode: selectedEmployee.ifscCode,
+        pdfHistorys: [],
       });
     } else {
-      setIsFound({...isFound,type:'notfound',
-      message:`Incorrect ID, Try again or `})
+      setIsFound({
+        ...isFound,
+        type: "notfound",
+        message: `Incorrect ID, Try again or `,
+      });
 
       setPayrollsData({
         EmployeeId: null,
@@ -63,6 +71,7 @@ const CreatePayrolls = () => {
         bankName: "",
         accountNumber: "",
         ifscCode: "",
+        pdfHistorys:[]
       });
     }
   };
@@ -71,12 +80,11 @@ const CreatePayrolls = () => {
     e.preventDefault();
     const { name, value } = e.target;
     setPayrollsData({
-        ...PayrollsData,
-        [name]: value,
+      ...PayrollsData,
+      [name]: value,
     });
   };
-
-
+  
   console.log(PayrollsData, "PayrollsData");
 
   const handleSubmit = (e) => {
@@ -100,6 +108,9 @@ const CreatePayrolls = () => {
       bankName: "",
       accountNumber: "",
       ifscCode: "",
+      pdfHistorys:[]
+      
+      // pdfHistory:"",
     }));
   };
 
@@ -116,20 +127,26 @@ const CreatePayrolls = () => {
           onSubmit={handleSubmit}
           className='flex flex-col w-2/4 justify-center gap-10'
         >
-        <div className="w-full flex">
+          <div className='w-full flex'>
+            <Input
+              type='text'
+              name='EmployeeId'
+              placeholder='Employee Id'
+              value={PayrollsData.EmployeeId}
+              onChange={handleEmployeeIdChange}
+              className='border-b text-green-600'
+            />
 
-          <Input
-    type='text'
-    name='EmployeeId'
-    placeholder='Employee Id'
-    value={PayrollsData.EmployeeId}  
-    onChange={handleEmployeeIdChange}
-    className='border-b text-green-600'
-/>
-
- { PayrollsData.EmployeeId && <p className= {isFound.type === "found" ? 'text-green-800' : 'text-red-500' }>{isFound.message}</p>
- }
- </div>
+            {PayrollsData.EmployeeId && (
+              <p
+                className={
+                  isFound.type === "found" ? "text-green-800" : "text-red-500"
+                }
+              >
+                {isFound.message}
+              </p>
+            )}
+          </div>
 
           {/* <Input
           type='text'

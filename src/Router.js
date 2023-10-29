@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import CreateDepartment from './pages/Create/CreateDepartment'
 // import PdfMaker from './pages/Pdf/PdfMaker'
 import PaySlip from './pages/PaySlip'
+import CreatePositions from './pages/Create/CreatePositions'
 
 const Router = () => {
   return (
@@ -18,6 +19,7 @@ const Router = () => {
     <Route path="/CreateEmployee" element={<CreateEmployee/>} />
     <Route path="/CreatePayrolls" element={<CreatePayrolls/>} />
     <Route path="/CreateDepartment" element={<CreateDepartment/>} />
+    <Route path="/CreatePositions" element={<CreatePositions/>} />
     <Route path="/PaySlip" element={<PaySlip/>} />
     {/* <Route path="/PaySlip" element={<PaySlip/>} /> */}
 

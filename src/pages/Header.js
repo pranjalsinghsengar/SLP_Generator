@@ -29,7 +29,7 @@ const Header = () => {
             Payrolls
           </Link>
           <Link
-            to='/CreatePayrolls'
+            to='/CreatePositions'
             onClick={() => setGoDashboard(false)}
           >
               Positions

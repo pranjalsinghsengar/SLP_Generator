@@ -131,19 +131,23 @@ const Employee = () => {
                 Other Details
               </p>
               <p>
-                <SpanDetail>Department </SpanDetail>
+                <SpanDetail>Department: </SpanDetail>
                 {selectedEmployee.department}
               </p>
               <p>
-                <SpanDetail>Designation </SpanDetail>
+                <SpanDetail>Designation: </SpanDetail>
                 {selectedEmployee.designation}
               </p>
               <p>
-                <SpanDetail>Date of Joining </SpanDetail>
+                <SpanDetail>Positions: </SpanDetail>
+                {selectedEmployee.position}
+              </p>
+              <p>
+                <SpanDetail>Date of Joining: </SpanDetail>
                 {selectedEmployee.dateOfJoining}
               </p>
               <p>
-                <SpanDetail>UAN </SpanDetail>
+                <SpanDetail>UAN: </SpanDetail>
                 {selectedEmployee.uan}
               </p>
             </div>

@@ -2,7 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../Context";
 import Input from "../../components/Input";
 import Create from "../../components/Create";
-import { Grey_option, OpenCardMainContainer, Select } from "../../components/Global";
+import {
+  Grey_option,
+  OpenCardMainContainer,
+  Select,
+} from "../../components/Global";
 import HeaderCreate from "../../components/HeaderCreate";
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +18,9 @@ const CreateEmployee = () => {
     EmployeeList,
     setEmployeeList,
     isActive,
-    setIsActive,departments
+    setIsActive,
+    departments,
+    Positions,
   } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -32,7 +38,7 @@ const CreateEmployee = () => {
       ...formData,
       status: isActive,
     });
-  },[isActive]);
+  }, [isActive]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +52,7 @@ const CreateEmployee = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsActive("Inactive")
+    setIsActive("Inactive");
     setEmployeeList([...EmployeeList, formData]);
     setFormData((prev) => ({
       ...prev,
@@ -59,6 +65,7 @@ const CreateEmployee = () => {
       email: "",
       department: "",
       designation: "",
+      position: "",
       dateOfJoining: "",
       bankName: "",
       accountNumber: "",
@@ -153,16 +160,23 @@ const CreateEmployee = () => {
         />
 
         <h1>... Detais</h1>
-      <Select id="" >
-      <Grey_option> Select Department</Grey_option>
-        {departments.map((department, index) => (
-          <option key={index} value={department}>
-            {department}
-          </option>
-        ))}
-      </Select>
+        <Select id='' name='department' onChange={handleInputChange}>
+          <Grey_option> Select Department</Grey_option>
+          {departments.map((department, index) => (
+            <option key={index} value={department}>
+              {department}
+            </option>
+          ))}
+        </Select>
+        <Select id='' name='position' onChange={handleInputChange}>
+          <Grey_option> Select Positions</Grey_option>
+          {Positions.map((Position, index) => (
+            <option key={index} value={Position}>
+              {Position}
+            </option>
+          ))}
+        </Select>
 
-       
         <Input
           type='text'
           name='designation'
