@@ -41,6 +41,11 @@ const Context = ({ children }) => {
   const [Positions, setPositions] = useState([]);
   const [SlipList, setSlipList] = useState([]);
 
+
+  useEffect(()=>{
+    console.log(EmployeeList)
+  },[EmployeeList])
+
   return (
     <AppContext.Provider
       value={{

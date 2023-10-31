@@ -177,13 +177,13 @@ const CreateEmployee = () => {
           ))}
         </Select>
 
-        <Input
+        {/* <Input
           type='text'
           name='designation'
           placeholder='Designation'
           value={formData.designation}
           onChange={handleInputChange}
-        />
+        /> */}
         <Input
           type='text'
           name='dateOfJoining'
