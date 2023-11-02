@@ -7,10 +7,11 @@ import styled from "styled-components";
 import { SpanDetail, TD } from "../components/Global";
 
 const Employee = () => {
-  const { EmployeeList, setEmployeeList, isActive, setIsActive } =
-    useContext(AppContext);
+  const { EmployeeList, setEmployeeList ,} = useContext(AppContext);
   const [selectedEmployee, setselectedEmployee] = useState(null);
-
+  const [isActive, setIsActive] = useState(
+    selectedEmployee && selectedEmployee.status
+  );
   const toggleActive = () => {
     if (isActive === "Active") {
       setIsActive("Inactive");
@@ -59,7 +60,10 @@ const Employee = () => {
         BTNtitle='Add Employee'
         onBtnClick={() => navigate("/CreateEmployee")}
         className='border-b pb-5'
+        BTNtitle2={"Add Payrolls"}
+        onBtnClick2={()=>navigate("/CreatePayrolls")}
       />
+      
       <div className='w-full h-full  flex items-start justify-between gap-4 '>
         <div
           className={` mt-5 h-full overflow-y-auto ${
@@ -139,14 +143,18 @@ const Employee = () => {
                       toggleActive();
                     }}
                     className={`${
-                      isActive === "Active" ? "bg-green-800" : "bg-gray-500"
+                      selectedEmployee.status === "Active"
+                        ? "bg-green-800"
+                        : "bg-gray-500"
                     } ml-4 relative flex cursor-pointer  items-center px-2 w-16 h-7 rounded-full`}
                   >
                     <div
                       // style={toggleActive ? { right: 0 } : { bottom: 0 }}
                       style={{
                         position: "absolute",
-                        [isActive === "Active" ? "right" : "left"]: 10,
+                        [selectedEmployee.status === "Active"
+                          ? "right"
+                          : "left"]: 10,
                       }}
                       className={` w-5 h-5 bg-white rounded-full`}
                     ></div>

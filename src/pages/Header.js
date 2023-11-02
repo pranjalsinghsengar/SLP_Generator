@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div className='w-full h-16 flex justify-center items-center'>
       <div className='w-11/12 flex justify-between'>
-        <img src='' alt='sdfdf' />
+        <img src='/vitric-logo.png' alt='sdfdf' className="min-w-1/6 max-w-xs max-h-full"/>
         <div className='flex gap-8'>
           <p
             className='cursor-pointer text-green-800 font-bold'

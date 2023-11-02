@@ -11,6 +11,7 @@ const Context = ({ children }) => {
   const [selectedEmployee, setselectedEmployee] = useState();
 
   const [EmployeeList, setEmployeeList] = useState([]);
+  const [employeeIDList, setEmployeeIDList] = useState([]);
   const [PayrollsList, setPayrollsList] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -28,24 +29,51 @@ const Context = ({ children }) => {
     bankName: "",
     accountNumber: "",
     ifscCode: "",
-    pdfHistory:'',
+    pdfHistory: "",
   });
   const [PayrollsData, setPayrollsData] = useState({
     EmployeeId: "",
     Year: "",
     Month: "",
     Type: "",
-    
   });
   const [departments, setDepartments] = useState([]);
   const [Positions, setPositions] = useState([]);
   const [SlipList, setSlipList] = useState([]);
 
+  useEffect(() => {
+    const updatedEmployeeIDList = EmployeeList.map((employee) => ({
+      employeeID: employee.EmployeeId,
+      name: employee.firstName + " " + employee.lastName,
+    }));
+    setEmployeeIDList(updatedEmployeeIDList);
+    console.log("EmployeeList", updatedEmployeeIDList);
+    // ====================================================================
+    // ====================================================================
+    // ====================================================================
+    EmployeeList.forEach((employee) => {
+      // Find the corresponding employee in PayrollsList
+      const existingPayroll = PayrollsList.find(
+        (payroll) => payroll.employeeID === employee.employeeID
+      );
 
-  useEffect(()=>{
-    console.log(EmployeeList)
-  },[EmployeeList])
+      // If the employee exists in PayrollsList, update its data
+      if (existingPayroll) {
+        const updatedEmployeeList = PayrollsList.map((payroll) => {
+          // if (payroll.EmployeeId === employee.EmployeeId) {
+          return {
+            ...payroll,
+            status: employee.status,
+          };
+          // }
+        });
 
+        setPayrollsList(updatedEmployeeList);
+        console.log("PayrollsList",updatedEmployeeList)
+      }
+    });
+  }, [EmployeeList]);
+  console.log(PayrollsList, PayrollsList);
   return (
     <AppContext.Provider
       value={{
@@ -72,6 +100,7 @@ const Context = ({ children }) => {
         setPositions,
         SlipList,
         setSlipList,
+        employeeIDList,
       }}
     >
       {children}

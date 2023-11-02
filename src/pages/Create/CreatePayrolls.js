@@ -15,6 +15,7 @@ const CreatePayrolls = () => {
     setPayrollsList,
     isFound,
     setIsFound,
+    employeeIDList,
   } = useContext(AppContext);
   const navigate = useNavigate();
   const [idexist, setidexist] = useState(false);
@@ -71,11 +72,11 @@ const CreatePayrolls = () => {
         bankName: "",
         accountNumber: "",
         ifscCode: "",
-        pdfHistorys:[]
+        pdfHistorys: [],
       });
     }
   };
-  
+
   const handleInputChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -84,7 +85,7 @@ const CreatePayrolls = () => {
       [name]: value,
     });
   };
-  
+
   console.log(PayrollsData, "PayrollsData");
 
   const handleSubmit = (e) => {
@@ -108,12 +109,13 @@ const CreatePayrolls = () => {
       bankName: "",
       accountNumber: "",
       ifscCode: "",
-      pdfHistorys:[]
-      
+      pdfHistorys: [],
+
       // pdfHistory:"",
     }));
   };
 
+  console.log("employeeIDList", employeeIDList);
   return (
     <>
       <HeaderCreate
@@ -128,6 +130,19 @@ const CreatePayrolls = () => {
           className='flex flex-col w-2/4 justify-center gap-10'
         >
           <div className='w-full flex'>
+            <Select
+              name='EmployeeId'
+              clr={PayrollsData.EmployeeId}
+              onChange={handleEmployeeIdChange}
+            >
+              <Grey_option value=''>Select Employee</Grey_option>
+              {employeeIDList.map((item, index) => (
+                <Grey_option value={item.employeeID} key={index}>
+                  {item.name}
+                </Grey_option>
+              ))}
+            </Select>
+
             <Input
               type='text'
               name='EmployeeId'
@@ -149,12 +164,12 @@ const CreatePayrolls = () => {
           </div>
 
           {/* <Input
-          type='text'
-          name='Year'
-          placeholder='Year'
-          value={PayrollsList.Month}
-          onChange={handleInputChange}
-        /> */}
+            type='text'
+            name='Year'
+            placeholder='Year'
+            value={PayrollsList.Month}
+            onChange={handleInputChange}
+          /> */}
           <div className='flex justify-between'>
             <Select
               name='Month'
@@ -203,12 +218,12 @@ const CreatePayrolls = () => {
           </Select>
 
           {/* <Input
-          type='text'
-          name='Type'
-          placeholder='Type'
-          value={PayrollsList.Type}
-          onChange={handleInputChange}
-        /> */}
+            type='text'
+            name='Type'
+            placeholder='Type'
+            value={PayrollsList.Type}
+            onChange={handleInputChange}
+          /> */}
           <div className='flex justify-center'>
             <button type='submit' className='mt-10'>
               <Create BTNtitle='Submit' />
