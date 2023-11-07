@@ -1,9 +1,10 @@
 import React from "react";
 import { XInput } from "./Global";
 
-const Input = ({ type, name, placeholder, value, onChange, className,onBlur }) => {
+const Input = ({ style,type, name, placeholder, value, onChange, className,onBlur }) => {
   return (
     <XInput
+    style={style}
       type={type}
       name={name}
       placeholder={placeholder}

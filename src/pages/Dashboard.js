@@ -63,7 +63,7 @@ const Dashboard = () => {
         <DashCard
           title='Positions'
           GreenText={PositionsCount}
-          OpenList={{}}
+          // OpenList={{}}
           CreateNew={() => {
             navigate("/CreatePositions");
             setGoDashboard(false);

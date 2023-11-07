@@ -23,7 +23,6 @@ const Context = ({ children }) => {
     uan: "",
     email: "",
     department: "",
-    designation: "",
     position: "",
     dateOfJoining: "",
     bankName: "",

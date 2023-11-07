@@ -9,6 +9,7 @@ import CreateDepartment from './pages/Create/CreateDepartment'
 // import PdfMaker from './pages/Pdf/PdfMaker'
 import PaySlip from './pages/PaySlip'
 import CreatePositions from './pages/Create/CreatePositions'
+import ManagePDF from './pages/ManagePDF'
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
     <Route path="/CreateDepartment" element={<CreateDepartment/>} />
     <Route path="/CreatePositions" element={<CreatePositions/>} />
     <Route path="/PaySlip" element={<PaySlip/>} />
+    <Route path="/ManagePDF" element={<ManagePDF/>} />
     {/* <Route path="/PaySlip" element={<PaySlip/>} /> */}
 
 

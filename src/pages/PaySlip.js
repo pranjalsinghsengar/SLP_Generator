@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import PdfMaker from "./Pdf/PdfMaker";
-import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import { PDFDownloadLink, PDFViewer, View } from "@react-pdf/renderer";
 import { useLocation } from "react-router-dom";
 import Input from "../components/Input";
 import { saveAs } from "file-saver";
 import { AppContext } from "../Context";
 import Create from "../components/Create";
+import PayslipApp from "./PayslipApp";
 
 const PaySlip = () => {
   const {
@@ -45,23 +46,23 @@ const PaySlip = () => {
   };
   const [showPdf, setshowPdf] = useState("");
 
-  useEffect(() => {
-    if (data && pdfHistory !== null) {
-      setPayrollsList((prevList) =>
-        prevList.map((employee) => {
-          if (employee.EmployeeId === data.EmployeeId) {
-            // Check if employee.pdfHistorys is an array or initialize it as an empty array
-            const updatedPdfHistorys = Array.isArray(employee.pdfHistorys)
-              ? [...employee.pdfHistorys, pdfHistory]
-              : [pdfHistory];
-            employee.pdfHistorys = updatedPdfHistorys;
-          }
-          return employee;
-        })
-      );
-    }
-    setPdfHistory(null);
-  }, [pdfHistory, data]);
+  // useEffect(() => {
+  //   if (data && pdfHistory !== null) {
+  //     setPayrollsList((prevList) =>
+  //       prevList.map((employee) => {
+  //         if (employee.EmployeeId === data.EmployeeId) {
+  //           // Check if employee.pdfHistorys is an array or initialize it as an empty array
+  //           const updatedPdfHistorys = Array.isArray(employee.pdfHistorys)
+  //             ? [...employee.pdfHistorys, pdfHistory]
+  //             : [pdfHistory];
+  //           employee.pdfHistorys = updatedPdfHistorys;
+  //         }
+  //         return employee;
+  //       })
+  //     );
+  //   }
+  //   setPdfHistory(null);
+  // }, [pdfHistory, data]);
 
   const SubmitHandler = () => {
     const payslip = { ...sallerydata };
@@ -116,7 +117,7 @@ const PaySlip = () => {
         <p className='text-4xl font-bold text-green-800'>{data.EmployeeId}</p>
       </div>
       <div className='flex justify-between items-center h-full'>
-        <div>
+        {/* <div>
           <div>
             <Input
               type='text'
@@ -165,7 +166,6 @@ const PaySlip = () => {
               <Create BTNtitle={"Add"} onBtnClick={SubmitHandler} />
             </div>
           </div>
-          {/*  */}
 
           <div className='border mt-32 border-green-800 rounded-2xl p-5 m-10 '>
             <table className='w-full'>
@@ -212,12 +212,13 @@ const PaySlip = () => {
               </tbody>
             </table>
           </div>
-        </div>
-        {showPdf && (
-          <PDFViewer width={1000} height={600}>
-            <PdfMaker selectedEmployee={data} pay={showPdf} />
-          </PDFViewer>
-        )}
+        </div> */}
+
+        <PayslipApp />
+
+        
+
+        {showPdf && <PDFViewer width={1000} height={600}></PDFViewer>}
       </div>
     </div>
   );

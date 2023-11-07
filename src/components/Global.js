@@ -10,13 +10,14 @@ max-height: 100%;
   gap: 2.5rem;
 `;
 export const XInput = styled.input`
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  background: transparent;
 `;
 
 export const Select = styled.select`
   font-size: 1.3rem;
   outline: none;
-  color: ${(props) => (props.clr == "" ? "grey" : "black")};
+  color: ${(props) => (props.clr === "" ? "grey" : "black")};
 `;
 export const Grey_option = styled.option`
   color: grey;
