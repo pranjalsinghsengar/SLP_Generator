@@ -64,50 +64,50 @@ const PaySlip = () => {
   //   setPdfHistory(null);
   // }, [pdfHistory, data]);
 
-  const SubmitHandler = () => {
-    const payslip = { ...sallerydata };
-    setPdfHistory(sallerydata);
-    setshowPdf(sallerydata);
+  // const SubmitHandler = () => {
+  // //   const payslip = { ...sallerydata };
+  // //   setPdfHistory(sallerydata);
+  // //   setshowPdf(sallerydata);
 
-    setSallerydata({
-      EmployeeId: null,
-      BasicSalary: "",
-      HRA: "",
-      conveyance: "",
-      medical: "",
-      special: "",
-      deductions: "",
-      NetAmount: "",
-    });
-  };
+  // //   setSallerydata({
+  // //     EmployeeId: null,
+  // //     BasicSalary: "",
+  // //     HRA: "",
+  // //     conveyance: "",
+  // //     medical: "",
+  // //     special: "",
+  // //     deductions: "",
+  // //     NetAmount: "",
+  // //   });
+  // // };
 
-  useEffect(() => {
-    const BasicSalary = parseFloat(sallerydata.BasicSalary);
-    const HRA = parseFloat(sallerydata.HRA);
-    const conveyance = parseFloat(sallerydata.conveyance);
-    const medical = parseFloat(sallerydata.medical);
-    const special = parseFloat(sallerydata.special);
-    const deductions = parseFloat(sallerydata.deductions);
+  // // useEffect(() => {
+  // //   const BasicSalary = parseFloat(sallerydata.BasicSalary);
+  // //   const HRA = parseFloat(sallerydata.HRA);
+  // //   const conveyance = parseFloat(sallerydata.conveyance);
+  // //   const medical = parseFloat(sallerydata.medical);
+  // //   const special = parseFloat(sallerydata.special);
+  // //   const deductions = parseFloat(sallerydata.deductions);
 
-    const netPayment =
-      BasicSalary + HRA + conveyance + medical + special - deductions;
+  // //   const netPayment =
+  // //     BasicSalary + HRA + conveyance + medical + special - deductions;
 
-    setSallerydata((prevData) => ({
-      ...prevData,
-      NetAmount: netPayment,
-    }));
-    console.log("netPayment", netPayment);
-  }, [
-    sallerydata.BasicSalary,
-    sallerydata.HRA,
-    sallerydata.conveyance,
-    sallerydata.medical,
-    sallerydata.special,
-    sallerydata.deductions,
-  ]);
-  console.log("payrollList", PayrollsList);
+  // //   setSallerydata((prevData) => ({
+  // //     ...prevData,
+  // //     NetAmount: netPayment,
+  // //   }));
+  // //   console.log("netPayment", netPayment);
+  // // }, [
+  // //   sallerydata.BasicSalary,
+  // //   sallerydata.HRA,
+  // //   sallerydata.conveyance,
+  // //   sallerydata.medical,
+  // //   sallerydata.special,
+  // //   sallerydata.deductions,
+  // // ]);
+  // // console.log("payrollList", PayrollsList);
 
-  console.log("pdfHistory", pdfHistory);
+  // // console.log("pdfHistory", pdfHistory);
 
   return (
     <div className=''>
@@ -214,7 +214,7 @@ const PaySlip = () => {
           </div>
         </div> */}
 
-        <PayslipApp />
+        <PayslipApp data={data} />
 
         
 

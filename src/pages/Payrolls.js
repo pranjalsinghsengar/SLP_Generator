@@ -10,7 +10,10 @@ const Payrolls = () => {
     PayrollsList,selectedEmployee, setselectedEmployee
   } = useContext(AppContext);
 
+  console.log("selectedEmployee", selectedEmployee)
+
   const navigate = useNavigate();
+  
 const OpenEmp_List = () => {
   navigate('/employees')
 }

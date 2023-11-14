@@ -5,7 +5,7 @@ import PdfMaker from "./Pdf/PdfMaker";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { AppContext } from "../Context";
 
-function PayslipApp() {
+function PayslipApp({data}) {
   const [incomeItems, setIncomeItems] = useState([]);
   const [deductionItems, setDeductionItems] = useState([]);
   const [newdeductionItems, setNewDeductionItems] = useState({
@@ -44,7 +44,7 @@ function PayslipApp() {
     PayrollsList,
     setPayrollsList,
     isFound,
-    setIsFound,
+    setIsFound,selectedEmployee
   } = useContext(AppContext);
 
   // Calculate net amount
@@ -162,14 +162,23 @@ function PayslipApp() {
         </div>
       </div>
 
-      <PDFDownloadLink
-        document={<PdfMaker deductionItems={deductionItems} incomeItems={incomeItems} totalAddingAmount={totalAddingAmount} totalDeductionAmount={totalDeductionAmount} netAmount={netAmount} PayrollsData={PayrollsData}/>}
-        fileName='employee_pay.pdf'
-      >
-        {({ blob, url, loading, error }) =>
-          loading ? "Loading document..." : "Download PDF"
-        }
-      </PDFDownloadLink>
+        <PDFDownloadLink
+          document={
+            <PdfMaker
+              deductionItems={deductionItems}
+              incomeItems={incomeItems}
+              totalAddingAmount={totalAddingAmount}
+              totalDeductionAmount={totalDeductionAmount}
+              netAmount={netAmount}
+              employee={data}
+            />
+          }
+          fileName='employee_pay.pdf'
+        >
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : "Download PDF"
+          }
+        </PDFDownloadLink>
     </div>
   );
 }
